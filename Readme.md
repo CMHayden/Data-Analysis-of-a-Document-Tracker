@@ -46,6 +46,8 @@ Logic must be done with Python 3. Some suggested libraries include *json library
 
 ### Views by country and continent
 
+We want to analyse the data in terms of country and continent. The application should take a string as input which identifies a document (UUID), and return a histogram of the views by country. Using this data, we want to also group the countries by continents and generate a new histogram.
+
 ### Views by browser
 
 ### "Also likes" document suggestion functionality
