@@ -54,6 +54,8 @@ We want to identify the most popular browser. We must examine the *visitor_usera
 
 ### "Also likes" document suggestion functionality
 
+For a given document, we want to identify other documents which have been read by this documents readers. To achieve this we will create a function which takes a document *UUID* and returns all visitor *UUID*s to gather the user ID's of readers of a document. We will then create a function that takes a visitor *UUID* and returns all document *UUID*s that have been read by the user. The also likes function will use this data to return a list of liked documents. This is then sorted based on **the number of readers of the same document**. A list is returned with the top 10 documents as a result.
+
 ### "Also likes" graph
 
 ### GUI functionality with tkinter
