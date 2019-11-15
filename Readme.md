@@ -20,6 +20,12 @@ This coursework will develop personal abilities in using modern scripting langua
 
 The report needs to critically reflect on the software used for implementing this application, and discuss advantages and disadvantages of this choice. The report should also contain a discussion, contrasting software development on Windows and Linux systems and comparing software development in scripting vs. systems languages (based on the experience from the two pieces of coursework).
 
+In this assignment, you are required to develop a python based application that analyses and displays document tracking data from a major website.
+
+The [issuu.com](http://www.issuu.com) platform is the chosen website. It currently hosts about 15 million documents. The website tracks usage of the site and makes the resulting, anonymised data available. 
+
+The data format is described on [http://www.labs.issuu.com/dataset_spec.html](http://www.labs.issuu.com/dataset_spec.html). the initial data set used for this exercise is available in the data sets directory. 
+
 ## Lab Environemnt
 
 Software environment: You should use Python 3 as installed on the Linux lab machines (EM 2.50) for the implementation. This installation also provides the pandas, tkinter, and matplot libraries.
