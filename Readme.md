@@ -64,6 +64,22 @@ To read the required data and display the statistcal data, a simple GUI based on
 
 ### Command line functionality
 
+The application must provide a command-line interface to test it's functionality in an automated way. Example:
+
+```bash
+% cw2 -u user_uuid -d doc_uuid -t task_id -f file_name
+```
+
+This would check the results of implementing task *task_id* using inputs *user_uuid* for the user UUID and *doc_uuid* for the document UUID; *file_name* is the name of the JSON file with the input data. The *task id*s should be:
+
+* *2a* - Input: document UUID. Return: histogram of countries of the viewers.
+* *2b* - Input: document UUID. Return: histogram of continents of the viewers.
+* *3a* - Return: histogram of all browser identifiers of viewers.
+* *3b* - Return: histogram of browser names of viewers.
+* *4d* - Input: document UUID, visitor UUID. Return: also like list of documents.
+* *5* - Input: document UUID, visitor UUID. Return: graph of relationship between the input document and all documents found as also like documents.
+* *6* - Return: task *5* followed by also likes graph based on task *5*.
+
 ## Report Format
 
 The report should be ten to fifteen pages long. Appendix is not included in page limit and may be used for screenshots. This is the format the report should follow:
