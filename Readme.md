@@ -60,6 +60,8 @@ For a given document, we want to identify other documents which have been read b
 
 ### GUI functionality with tkinter
 
+To read the required data and display the statistcal data, a simple GUI based on tkinter must be used, which will read the user inputs as described above and with buttons to process the data as requested.
+
 ### Command line functionality
 
 ## Report Format
