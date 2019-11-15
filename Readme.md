@@ -66,22 +66,22 @@ For a given document, we want to identify other documents which have been read b
 
 The report should be ten to fifteen pages long. Appendix is not included in page limit and may be used for screenshots. This is the format the report should follow:
 
-* **1.Introduction** state the purpose of the report, the design remit, and any assumptions made. 
+* **Introduction** state the purpose of the report, the design remit, and any assumptions made. 
 
-* **2.Requirements' Checklist** should clearly show which requirements were achieved and which were not.
+* **Requirements' Checklist** should clearly show which requirements were achieved and which were not.
 
-* **3.Design Considerations** should clearly state what was done to ensure the application is useable and accessible.
+* **Design Considerations** should clearly state what was done to ensure the application is useable and accessible.
 
-* **4.User Guide** should include screenshots of running application along with text descriptions to help a user use the application.
+* **User Guide** should include screenshots of running application along with text descriptions to help a user use the application.
 
-* **5.Developer Guide** should include a description of the application design and main areas of code. May be beneficial to include code fragments.
+* **Developer Guide** should include a description of the application design and main areas of code. May be beneficial to include code fragments.
 
-* **6.Testing** should show the results for testing all cases and prove that the outputs are what are expected. Report any errors.
+* **Testing** should show the results for testing all cases and prove that the outputs are what are expected. Report any errors.
 
-* **7.Reflections on programming language and implementation** should be a reflection of the language features and technologies which have been helpful in developing the application. It should identify the limitations of the application and suggest ways to overcome the limitations. Reflection on the type of language for this application domain and it's wider application.
+* **Reflections on programming language and implementation** should be a reflection of the language features and technologies which have been helpful in developing the application. It should identify the limitations of the application and suggest ways to overcome the limitations. Reflection on the type of language for this application domain and it's wider application.
 
-* **8.What did I learn from CW1?** should be a discussion on how feedback from CW1 made this CW be approached differently.
+* **What did I learn from CW1?** should be a discussion on how feedback from CW1 made this CW be approached differently.
 
-* **9.Conclusions** should be a reflection on what we are proud of with the application and what we would have liked to do differently.
+* **Conclusions** should be a reflection on what we are proud of with the application and what we would have liked to do differently.
 
-* **10. References** essentially just a bibliography.
+* **References** essentially just a bibliography.
