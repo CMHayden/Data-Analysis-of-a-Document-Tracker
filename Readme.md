@@ -46,9 +46,11 @@ Logic must be done with Python 3. Some suggested libraries include *json library
 
 ### Views by country and continent
 
-We want to analyse the data in terms of country and continent. The application should take a string as input which identifies a document (UUID), and return a histogram of the views by country. Using this data, we want to also group the countries by continents and generate a new histogram.
+We want to analyse the data in terms of country and continent. The application should take a string as input which identifies a document (*UUID*), and return a histogram of the views by country. Using this data, we want to also group the countries by continents and generate a new histogram.
 
 ### Views by browser
+
+We want to identify the most popular browser. We must examine the *visitor_useragent* field and count the number of occurrences for each value. It should return a histogram of all browser identifiers of the viewers. Finally, we must process the data and display a histogram using the browser name (eg, chrome or mozilla) instead of name, version and OS. 
 
 ### "Also likes" document suggestion functionality
 
