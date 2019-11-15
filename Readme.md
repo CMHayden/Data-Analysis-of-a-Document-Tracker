@@ -4,13 +4,13 @@ The aim of this coursework is to develop a simple, data-intensive application in
 
 ## Table of Contents
 
-* Overview
+* [Overview](https://github.com/CMHayden/Data-Analysis-of-a-Document-Tracker#overview)
 
-* Lab Environment
+* [Lab Environment](https://github.com/CMHayden/Data-Analysis-of-a-Document-Tracker#lab-environemnt)
 
-* Requirements
+* [Requirements](https://github.com/CMHayden/Data-Analysis-of-a-Document-Tracker#requirements)
 
-* Report Format
+* [Report Format](https://github.com/CMHayden/Data-Analysis-of-a-Document-Tracker#report-format)
 
 ## Overview
 
@@ -41,6 +41,8 @@ For each of the chosen technologies, the report should discuss why it is the mos
 | Command line functionality                                                        | No            |
 
 ### Core logic of application must be in Python 3
+
+Logic must be done with Python 3. Some suggested libraries include *json library* for parsing data, *[pandas](https://pandas.pydata.org/)* for processing the input data, *[tkinter](https://docs.python.org/2/library/tkinter.html)* for creating the GUI and *[matplot](https://matplotlib.org/)* for visualizing the results. *[Graphviz](https://www.graphviz.org/)* package is also recommended for translating *.dot* formats to *.ps*.
 
 ### Views by country and continent
 
