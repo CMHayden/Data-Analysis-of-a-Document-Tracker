@@ -58,6 +58,8 @@ For a given document, we want to identify other documents which have been read b
 
 ### "Also likes" graph
 
+Using the also likes functionality, generate a graph that displays the relationship between the input document and all documents that have been found as "also like" documents. Highlight the input document and user. Use arrows to capture "has read" relationship. Shorten all visitor UUIDs and document UUIDs to the last 4 hex digits. 
+
 ### GUI functionality with tkinter
 
 To read the required data and display the statistcal data, a simple GUI based on tkinter must be used, which will read the user inputs as described above and with buttons to process the data as requested.
