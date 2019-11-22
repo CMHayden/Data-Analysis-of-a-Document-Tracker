@@ -12,6 +12,8 @@ The aim of this coursework is to develop a simple, data-intensive application in
 
 * [Report Format](https://github.com/CMHayden/Data-Analysis-of-a-Document-Tracker#report-format)
 
+* [Planning](https://github.com/CMHayden/Data-Analysis-of-a-Document-Tracker#planning)
+
 ## Overview
 
 The learning objective of this coursework is to develop proficiency in advanced programming concepts, stemming from both object-oriented and functional programming paradigms, and to apply these programming skills to a concrete application of a moderate size. Design choices regarding languages, tools, and libraries chosen for the implementation need to be justified in the adjoining report.
@@ -111,3 +113,35 @@ The report should be ten to fifteen pages long. Appendix is not included in page
 * **Conclusions** should be a reflection on what we are proud of with the application and what we would have liked to do differently.
 
 * **References** essentially just a bibliography.
+
+## Planning
+
+### get_viewsByCountry(document_id)
+
+Funtion which takes a document UUID as a parameter and returns a list of tuples with the country and the amount of views of a given document from said country.
+
+Parameters: 
+* document_id - Document UUID - *env_doc_id*
+
+Returns:
+* views_by_country - List of tuples with country and number of views of given document.
+
+### get_viewsByContinent(document_id)
+
+Function which takes a document UUID as a parameter and uses it to call get_viewsByCountry(). With the return of get_viewsByCountry(), it will calculate the number of views from each continent and return it as a list of tuples.
+
+Method:
+* Call the get_viewsByCountry() method with document_id as a parameter.
+
+Returns: 
+* views_by_continent - List of tuples with continents and number of views of given document.
+
+### get_browserInformation()
+
+Function which studies the *visitor_useragent* field to get the full browser information for the 
+
+### clean_browserInformation()
+
+### create_histogram()
+
+### read_dataFromJson()
