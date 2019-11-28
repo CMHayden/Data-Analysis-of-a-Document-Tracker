@@ -33,29 +33,20 @@ def histogram(dict, xlabel, title):
     plt.show()
 
 
-def countriesCounter(data):
-    countriesDict = {}
-    for country in data:
-        if country in countriesDict:
-            countriesDict[country] += 1
+def counter(data):
+    dict = {}
+    for val in data:
+        if val in dict:
+            dict[val] += 1
         else:
-            countriesDict[country] = 1
-    return countriesDict
-
-def browserCounter(data):
-    browsersDict = {}
-    for browser in data:
-		if browser in browsersDict:
-			browsersDict[browser] += 1
-		else:
-			browsersDict[browser] = 1
-    return browsersDict
+            dict[val] = 1
+    return dict
 
 
 data = reader("issuu_sample.json")
 
 countries = getCountries("140228202800-6ef39a241f35301a9a42cd0ed21e5fb0")
-histogram(countriesCounter((countries)), "Countries", "Counting Countries")
+histogram(counter((countries)), "Countries", "Counting Countries")
 
 browsers = getBrowsers()
-histogram(browserCounter((browsers)), "Browsers", "Counting Browsers")
+histogram(counter((browsers)), "Browsers", "Counting Browsers")
