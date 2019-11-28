@@ -25,11 +25,11 @@ def histogram(dict, xlabel, title):
     plt.ylabel("Frequency", fontsize=15)
     plt.title(title, fontsize=20)
 
-    xRange = range(len(dict.keys()))
+    xRange = list(range(len(list(dict.keys()))))
 
-    plt.xticks(xRange, dict.keys())
+    plt.xticks(xRange, list(dict.keys()))
 
-    plt.bar(xRange, dict.values(), align='center', color='g')
+    plt.bar(xRange, list(dict.values()), align='center', color='g')
     plt.show()
 
 
