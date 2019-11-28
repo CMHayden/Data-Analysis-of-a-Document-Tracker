@@ -1,18 +1,25 @@
 import matplotlib.pyplot as plt
 import json
+from datetime import datetime
 
-def reader(url):
-    data = ["test"]
-    with open("datasets/issuu_sample.json", "r") as read_file:
-        data = json.load(read_file)
-    return data
+
+def reader(file):
+	data = []
+	for line in open(file, mode="r"):
+		data.append(json.loads(line))
+	return data
+
 
 def getCountries(docID):
-    countries = []
-    for d in data:
-        if (d["subject_doc_id"] == docID):
-            countries.append(d["visitor_country"])
-    return countries
+	countries = []
+	i = 0
+	for d in data:
+		try:
+			if (d["env_type"] == "reader"):
+				countries.append(d["visitor_country"])
+		except:
+			print("env_type doesn't exist")
+	return countries
 
 def getBrowsers():
     browsers = []
@@ -42,11 +49,18 @@ def counter(data):
             dict[val] = 1
     return dict
 
+now = datetime.now()
 
-data = reader("issuu_sample.json")
+current_time = now.strftime("%H:%M:%S")
+print("Current Time: ", current_time)
+
+data = reader("functions/sample_3m_lines.json")
 
 countries = getCountries("140228202800-6ef39a241f35301a9a42cd0ed21e5fb0")
 histogram(counter((countries)), "Countries", "Counting Countries")
 
-browsers = getBrowsers()
-histogram(counter((browsers)), "Browsers", "Counting Browsers")
+#browsers = getBrowsers()
+#histogram(counter((browsers)), "Browsers", "Counting Browsers")
+now = datetime.now()
+end_time = now.strftime("%H:%M:%S")
+print("End Time: ", end_time)
