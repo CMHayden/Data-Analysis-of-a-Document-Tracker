@@ -16,8 +16,10 @@ countriesDict = {
     }
 
 for country in data:
-    continentsDict[countriesDict[country]] = continentsDict[countriesDict[country]] + data[country]
-
+    try:
+        continentsDict[countriesDict[country]] = continentsDict[countriesDict[country]] + data[country]
+    except KeyError:
+        print("Countries continent not found: " + country)
 print (continentsDict)
 # Outpus: {'Africa': 0, 'Americas': 1, 'Asia': 7, 'Europe': 3, 'Oceania': 0}
 
