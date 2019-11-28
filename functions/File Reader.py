@@ -10,15 +10,15 @@ def getCountries(docID):
 	i = 0
 	for d in data:
 		try:
-			if (d["env_doc_id"] == docID):
+			if (d["env_type"] == "reader"):
 				countries.append(d["visitor_country"])
 		except:
-			try:
-				if (d["subject_doc_id"] == docID):
-					countries.append(d["visitor_country"])
-			except:
-				i = i+1
-				print(i)
+			#try:
+				#if (d["subject_doc_id"] == docID):
+					#countries.append(d["visitor_country"])
+			#except:
+			i=i+1
+			print(i)
 	return countries
 
 def getBrowsers():
@@ -63,7 +63,7 @@ def alsoLike(docID, visID = None):
 
 data = json_readr("sample_100k_lines.json")
 #print(getList("visitor_country", "140228202800-6ef39a241f35301a9a42cd0ed21e5fb0"))
-getCountries("140228202800-6ef39a241f35301a9a42cd0ed21e5fb0")
+print(getCountries("140228202800-6ef39a241f35301a9a42cd0ed21e5fb0"))
 #print()
 #print(getList("visitor_useragent"))
 #print(getBrowsers())
@@ -72,6 +72,6 @@ getCountries("140228202800-6ef39a241f35301a9a42cd0ed21e5fb0")
 #print(documentVisitors("140228202800-6ef39a241f35301a9a42cd0ed21e5fb0"))
 #print()
 #print(visitorDocuments("745409913574d4c6"))
-print("worked")
+print()
 #print(alsoLike("140228202800-6ef39a241f35301a9a42cd0ed21e5fb0"))
 
