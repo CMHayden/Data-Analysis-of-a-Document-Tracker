@@ -52,6 +52,7 @@ A valid command starts with python3 to tell the machine to run the application w
     * *4d* - Display a list of other documents the reader may like.
     * *5* - Display a graph of relationship between a document and all documents found as also like documents.
     * *6* - Display a graph based on task *5*.
+    * *7* - Display a line chart showing the frequency of views of a given document over time.
 
 * **-f**: sets the file to be used by the application. The expected parameter is the location of the file.
 
@@ -59,7 +60,9 @@ A valid command starts with python3 to tell the machine to run the application w
 
 * **-d**: sets a document ID that will be passed into the requested task.
 
-* **-h** *or* **--help**: calls the help function which will display a small user guide on the command line to ensure the user is able to get help when needed.
+* **-h** *or* **--help**: calls the help function which will display a small user guide on the command line to ensure the user is able to get help when needed. This screen can be seen here:
+
+![--help flag output](https://raw.githubusercontent.com/CMHayden/Data-Analysis-of-a-Document-Tracker/master/report/img/commandLine--help.png?token=AFNT2CFGTUQQWWLZMOOOGD255P5KS)
 
 ### Graphical User Interface
 
