@@ -32,6 +32,38 @@ I think, this may be changed in future I guess?
 
 ## 4. User Guide
 
+This application has two very distinct user interfaces. One is the command line interface and the other is the graphical user interface. They both allow for the same functionality, only they are done in different ways.
+
+### Command Line Interface
+
+The command line interface, while more complicated for everyday users, allows for quick interaction for more advanced users. It allows for typing commands to do tasks and passing parameters into the tasks. There is a limitation towards what commands can be understood by this interface. A valid command has the following structure:
+
+```bash
+% python3 cw2.py -u user_uuid -d doc_uuid -t task_id -f file_name
+```
+
+A valid command starts with python3 to tell the machine to run the application with python3, followed by the applications python file name which is cw2.py. After this what comes can be totally optional using the following commands:
+
+* **-t**: sets the task the application will perform and allows for the following parameters:
+    * *2a* - Display a histogram of countries of the viewers.
+    * *2b* - Display a histogram of continents of the viewers.
+    * *3a* - Display a histogram of all browser identifiers of viewers.
+    * *3b* - Display a histogram of browser names of viewers.
+    * *4d* - Display a list of other documents the reader may like.
+    * *5* - Display a graph of relationship between a document and all documents found as also like documents.
+    * *6* - Display a graph based on task *5*.
+
+* **-f**: sets the file to be used by the application. The expected parameter is the location of the file.
+
+* **-u**: sets a user ID that will be passed into the requested task.
+
+* **-d**: sets a document ID that will be passed into the requested task.
+
+* **-h** *or* **--help**: calls the help function which will display a small user guide on the command line to ensure the user is able to get help when needed.
+
+### Graphical User Interface
+
+
 ## 5. Developer Guide
 
 ## 6. Testing
