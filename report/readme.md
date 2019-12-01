@@ -30,9 +30,44 @@ I think, this may be changed in future I guess?
 
 ## 3. Design Considerations
 
+### Using Dictionaries
+
+Dictionaries are a data type in Python. They act like lists but differ primarily by being accesible via their keys instead of via indexing. This allowed us to count occurences without the need of looping through a list and using if statements for every scenario. Here is an example where we used dictionaries to check every country in the list data, and check which continent it belongs to before adding the value associated with each country to the continent to allow for counting the views of a document by continent.
+
+```python
+for country in data:
+    try:
+        continentsDict[countriesDict[country]] = continentsDict[countriesDict[country]] + data[country]
+    except KeyError:
+        print("Countries continent not found: " + country)
+```
+
+One alternative would be to use if statements. This would mean having to use an if statement for every possible country. This would be very inefficient due to having to do such a large quantity of comparisons. This would cause the application to be extremely slow when using a large quantity of data. Here is an example of this:
+
+```python
+for country in data:
+    if country == "AL":
+        Europe = Europe + 1
+    elif country == "AS":
+        Europe = Europe + 1
+    elif
+    # and so forth for every country and every continent
+```
+
+A third alternative is to store the data in a dictionary much like the first and chosen option, but checking if what the data corresponds to by using lists. When found then you would count it by adding the value of the dictionary to a variable for the corresponding data. This can be seen with a dictionary (data), variables (Europe, Africa...), and lists (europe, africa...) in the example below. 
+
+```python
+for country in data:
+    if country is in europe:
+        Europe = Europe + dictionary[country]
+    elif country is in africa:
+        Africa = Africa + dictionary[country]
+    # And so forth for every continent.
+```
+
 ## 4. User Guide
 
-This application has two very distinct user interfaces. One is the command line interface and the other is the graphical user interface. They both allow for the same functionality, only they are done in different ways.
+This application has two very distinct user interfaces. One is the command line interface and the other is the graphical user interface. They both allow for the same functionality, only they are used in different ways.
 
 ### Command Line Interface
 
