@@ -1,20 +1,41 @@
 from datetime import datetime
 import matplotlib.pyplot as plt
 import collections
+import re
+import json
 
-data = [1342631989, 1353631990, 1333631998, 1353631990, 1333631998]
+def read_JSON(file):
+	data = []
+	for line in open(file, mode="r"):
+		data.append(json.loads(line))
+	return data
+
+def getTimes():
+    browsers = []
+    for d in data2:
+        try:
+            browsers.append(d["ts"])
+        except:
+            print("oops")
+    return browsers
+
+data2 = read_JSON("functions/sample_3m_lines.json")
+data = getTimes()
+
 x = []
 y = []
 
 dateDict = {}
 for timestamp in data:
-    print(datetime.fromtimestamp(timestamp).date())
     if datetime.fromtimestamp(timestamp).date() in dateDict:
         dateDict[datetime.fromtimestamp(timestamp).date()] += 1
     else:
         dateDict[datetime.fromtimestamp(timestamp).date()] = 1
 
 orderedDict = collections.OrderedDict(sorted(dateDict.items()))
+
+print(list(orderedDict.keys())[0])
+print(list(orderedDict.keys())[len(orderedDict) - 1])
 
 for record in orderedDict:
     x.append(record)
