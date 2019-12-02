@@ -51,6 +51,9 @@ Here is an explanation of each of these parameters:
         7: takes a file's address and a document id and displays a line chart showing 
         spikes in activity for the document on different days.
 
+        8: takes a file's address and a document id and calculates the average time 
+        spent reading the document.
+
     -u: This allows for passing a user ID into the task. While not all tasks will use this,
     it is mandatory for others such as for task 4d.
 
@@ -89,6 +92,7 @@ dictFunctions = {
     # "4d": find_alsoLikes(dictArgs["-d"], dictArgs["-u"], dictArgs["-f"]),
     # "5": create_relationshipGraph(dictArgs["-d"], dictArgs["-u"], dictArgs["-f"]),
     # "6": create_alsoLikesGraph(dictArgs["-d"], dictArgs["-u"], dictArgs["-f"]),
-    # "7": display_timeGraph(dictArgs["-d"], dictArgs["-f"])
+    # "7": display_timeGraph(dictArgs["-d"], dictArgs["-f"]),
+    # "8": get_averageReadTime(dictArgs["-d"], dictArgs["-f"])
 }
 
