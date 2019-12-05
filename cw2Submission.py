@@ -164,8 +164,8 @@ def display_timeGraph(data):
 
     plt.plot(x,y)
     plt.xlabel("Dates", fontsize=15)
-    plt.ylabel("Ts", fontsize=15)
-    plt.title("Average time spent on all the browsers", fontsize=20)
+    plt.ylabel("Time spent reading", fontsize=15)
+    plt.title("Average time spent reading", fontsize=20)
     plt.gcf().autofmt_xdate()
     plt.show()
 
