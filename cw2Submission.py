@@ -14,6 +14,8 @@ fullCmdArguments = sys.argv
 argumentList = fullCmdArguments[1:]
 unixOptions = "u:d:t:f:h"
 gnuOptions = ["help"]
+dictArgs = {}
+jsonData = []
 countriesDict = {
     'DZ': 'Africa', 'AO': 'Africa', 'BJ': 'Africa', 'BW': 'Africa', 'BF': 'Africa', 'BI': 'Africa', 'CM': 'Africa',
     'CV': 'Africa', 'CF': 'Africa', 'KM': 'Africa', 'CD': 'Africa', 'DJ': 'Africa', 'EG': 'Africa', 'GQ': 'Africa',
@@ -57,10 +59,6 @@ except getopt.error as err:
     # output error, and return with an error code
     print(str(err))
     sys.exit(2)
-
-dictArgs = {}
-jsonData = []
-
 
 def display_Help():
     print("""
@@ -139,6 +137,16 @@ def getTimes(data):
             None
     return browsers
 
+def get_averageReadTime(data):
+    total = 0
+
+    for time in data:
+        total = total + (time // 60)
+
+    output = "The average time spent reading this document is" + str((total // len(data))) +  " minutes."
+    print(output)
+    return output
+
 def display_timeGraph(data):
     x = []
     y = []
@@ -176,7 +184,7 @@ def create_histogram(dict, xlabel, title):
     plt.show()
 
 
-def get_viewsByCountry(document_id):
+def get_viewsByCountry(document_id, jsonData = jsonData):
     countries = []
     for d in jsonData:
         try:
@@ -206,6 +214,14 @@ def get_viewsByBrowser(data):
             None
     return browsers
 
+def get_timeSpent(data):
+    time = []
+    for d in data:
+        try:
+            time.append(d["event_readtime"])
+        except:
+            None
+    return time
 
 def clean_viewsByBrowser(dict):
     cleanDict = {}
@@ -266,11 +282,14 @@ def find_alsoLikes(docID, visID, data):
 def top10(dictArray):
     print("The top 10 documents are:")
     mostCommon = dictArray[1].most_common();
+    output = ""
     for x in range(10):
         try:
-            print(str(x + 1) + ". " + mostCommon[x][0] + " which totalled " + str(mostCommon[x][1]))
+            output += str(x + 1) + ". " + mostCommon[x][0] + " which totalled " + str(mostCommon[x][1]) + "\n"
         except Exception as e:
             break;
+    print(output)
+    return output
 
 
 def dotFileGenerator(arr, docID, visID=None):
@@ -347,10 +366,9 @@ try:
         # "2b": create_histogram(Counter(get_viewsByContinent(Counter(get_viewsByCountry(dictArgs["-d"], read_JSON(dictArgs["-f"]))))), "Continents", "Continents Histogram"),
         # "4d": top10(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"]))),
         # "5": dotFileGenerator(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"])), dictArgs["-d"], dictArgs["-u"]),
-        # "6": guiStuff(dictArgs["-d"], dictArgs["-u"], dictArgs["-f"]),
-        # "7": create_relationshipGraph(dictArgs["-d"], dictArgs["-u"], dictArgs["-f"]),
-        "8": display_timeGraph(getTimes(read_JSON(dictArgs["-f"]))),
-        # "9": get_averageReadTime(dictArgs["-d"], dictArgs["-f"])
+        # "6": dotFileGenerator(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"])), dictArgs["-d"], dictArgs["-u"]),
+        # "8": display_timeGraph(getTimes(read_JSON(dictArgs["-f"]))),
+        # "9": get_averageReadTime(get_timeSpent(read_JSON(dictArgs["-f"])))
     }
 except Exception as e:
     print(str(e))
@@ -359,6 +377,8 @@ except Exception as e:
     # doc_uuid: 100806162735-00000000115598650cb8b514246272b5
     # user_uuid: 00000000deadbeef
 
+root = Tk()
+topTen = StringVar()
 
 def twoa():
     try:
@@ -366,7 +386,6 @@ def twoa():
         create_histogram(Counter(get_viewsByCountry(documentID.get())), "Countries", "Countries Histogram")
     except Exception as e:
         print(str(e))
-
 
 def twob():
     try:
@@ -391,30 +410,40 @@ def threeb():
     except Exception as e:
         print(str(e))
 
-
+# sample_100k_lines (2).json
+    # doc_uuid: 100806162735-00000000115598650cb8b514246272b5
+    # user_uuid: 00000000deadbeef
 def fourd():
     try:
-        top10(find_alsoLikes(documentID.get(), visitorID.get(), read_JSON(file.get())))
+        output = top10(find_alsoLikes(documentID.get(), visitorID.get(), read_JSON(file.get())))
+        topTen.set("These are top top 10 values:\n" + output)
     except Exception as e:
         print(str(e))
 
 
 def five():
     try:
-        dotFileGenerator(find_alsoLikes(documentID.get(), visitorID.get(), read_JSON(file.get())), documentID.get(),
-                         visitorID.get()),
+        dotFileGenerator(find_alsoLikes(documentID.get(), visitorID.get(), read_JSON(file.get())), documentID.get(), visitorID.get())
     except Exception as e:
         print(str(e))
 
 def eight():
     try:
-        display_timeGraph(getTimes(read_JSON(file.get()))),
+        display_timeGraph(getTimes(read_JSON(file.get())))
     except Exception as e:
         print(str(e))
-root = Tk()
+
+def nine():
+    try:
+        output = get_averageReadTime(get_timeSpent(read_JSON(file.get())))
+        topTen.set(output)
+    except Exception as e:
+        print(str(e))
+
+
 root.title("Data Analysis")
 
-mainframe = ttk.Frame(root, padding="20 20 20 20")
+mainframe = ttk.Frame(root, padding="30 30 30 30")
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
@@ -422,7 +451,6 @@ root.rowconfigure(0, weight=1)
 file = StringVar()
 documentID = StringVar()
 visitorID = StringVar()
-error = ""
 
 file_entry = ttk.Entry(mainframe, width=7, textvariable=file)
 file_entry.grid(column=4, row=1, sticky=(W, E))
@@ -434,7 +462,7 @@ visitorID_entry.grid(column=4, row=3, sticky=(W, E))
 ttk.Label(mainframe, text="file").grid(column=3, row=1, sticky=W)
 ttk.Label(mainframe, text="documentID").grid(column=3, row=2, sticky=W)
 ttk.Label(mainframe, text="visitorID").grid(column=3, row=3, sticky=W)
-ttk.Label(mainframe, text=error).grid(column=3, row=4, sticky=W)
+ttk.Label(mainframe, textvariable=topTen).grid(column=3, row=8, sticky=W)
 
 ttk.Button(mainframe, text="2a", command=twoa).grid(column=1, row=5, sticky=W)
 ttk.Button(mainframe, text="2b", command=twob).grid(column=2, row=5, sticky=W)
@@ -443,19 +471,6 @@ ttk.Button(mainframe, text="3b", command=threeb).grid(column=4, row=5, sticky=W)
 ttk.Button(mainframe, text="4d", command=fourd).grid(column=5, row=5, sticky=W)
 ttk.Button(mainframe, text="5", command=five).grid(column=6, row=5, sticky=W)
 ttk.Button(mainframe, text="8", command=eight).grid(column=7, row=5, sticky=W)
+ttk.Button(mainframe, text="9", command=nine).grid(column=8, row=5, sticky=W)
 root.bind('<Return>')
 root.mainloop()
-
-'''ttk.Label(mainframe, textvariable=meters).grid(column=2, row=2, sticky=(W, E))
-ttk.Button(mainframe, text="Calculate", command=calculate).grid(column=3, row=3, sticky=W)
-
-ttk.Label(mainframe, text="feet").grid(column=3, row=1, sticky=W)
-ttk.Label(mainframe, text="is equivalent to").grid(column=1, row=2, sticky=E)
-ttk.Label(mainframe, text="meters").grid(column=3, row=2, sticky=W)
-
-for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
-
-feet_entry.focus()
-root.bind('<Return>', calculate)
-
-root.mainloop()'''
