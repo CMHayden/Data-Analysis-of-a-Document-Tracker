@@ -4,6 +4,7 @@ import json
 import re
 from datetime import datetime
 from collections import Counter
+import os
 
 fullCmdArguments = sys.argv
 
@@ -249,10 +250,9 @@ def dotFileGenerator(arr, docID, visID = None):
     f.write(dotFile);
     f.close();
 
-    print("dot file has been generated, check your folder!")
-    print("Use the following commands to generate the graph:")
-    print("dot -Tps -o 1m_3.ps source.dot")
-    print("evince 1m_3.ps")
+    print("generating dot files and graphs...")
+    os.system("dot -Tps -o 1m_3.ps source.dot")
+    os.system("evince 1m_3.ps")
 
 # ↑ ↑ ALL FUNCTION DEFS ABOVE HERE ↑ ↑
 try:
@@ -263,9 +263,10 @@ try:
         #"2b": create_histogram(Counter(get_viewsByContinent(Counter(get_viewsByCountry(dictArgs["-d"], read_JSON(dictArgs["-f"]))))), "Continents", "Continents Histogram"),
         #"4d": top10(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"]))),
         "5": dotFileGenerator(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"])), dictArgs["-d"], dictArgs["-u"]),
-        #"6": create_relationshipGraph(dictArgs["-d"], dictArgs["-u"], dictArgs["-f"]),
-        #"7": display_timeGraph(dictArgs["-d"], dictArgs["-f"]),
-        #"8": get_averageReadTime(dictArgs["-d"], dictArgs["-f"])
+        #"6": guiStuff(dictArgs["-d"], dictArgs["-u"], dictArgs["-f"]),
+        #"7": create_relationshipGraph(dictArgs["-d"], dictArgs["-u"], dictArgs["-f"]),
+        #"8": display_timeGraph(dictArgs["-d"], dictArgs["-f"]),
+        #"9": get_averageReadTime(dictArgs["-d"], dictArgs["-f"])
     }
 except:
     print()
