@@ -115,10 +115,16 @@ adjoining report or in the github repository.
 
 
 # ↓ ↓ ALL FUNCTION DEFS BELOW HERE ↓ ↓
+
+#reads every line (since every line in the JSON file met the format of a JSON object
+#this allowed us to use .loads and append it accordingly
 def read_JSON(file):
-    for line in open(file, mode="r"):
-        jsonData.append(json.loads(line))
-    return jsonData
+    try:
+        for line in open(file, mode="r"):
+            jsonData.append(json.loads(line))
+        return jsonData
+    except Exception as e:
+        print(str(e))
 
 def getTimes(data):
     browsers = []
@@ -163,6 +169,8 @@ def display_timeGraph(data):
     plt.gcf().autofmt_xdate()
     plt.show()
 
+#here we are using matplotlib to create a histogram
+#we give it titles and labels
 def create_histogram(dict, xlabel, title):
     plt.xlabel(xlabel, fontsize=15)
     plt.ylabel("Frequency", fontsize=15)
@@ -172,12 +180,16 @@ def create_histogram(dict, xlabel, title):
 
     plt.xticks(xRange, list(dict.keys()))
 
+#we need to use xRange here because it requires integers instead of strings so it can assign spaces
+#it's easy to convert the numbers into strings by using xticks above
     plt.bar(xRange, list(dict.values()), align='center', color='g')
     plt.show()
 
 
 def get_viewsByCountry(document_id, jsonData = jsonData):
     countries = []
+    #we read through the data and whenever we hit an ID for env_doc_id and it's the same as the user inputted one
+    #add it and continue
     for d in jsonData:
         try:
             if (d["env_doc_id"] == document_id):
