@@ -68,8 +68,8 @@ This application accepts a number of parameters through the command line.
 Here is an explanation of each of these parameters:
 
     -t: This sets the task the program shall do. It takes options which
-    dictate which task it will perform. These options are the task id
-    and are as followed:
+    dictate which task it will perform. If -t is not present, the program 
+    displays the GUI version instead. The options for -t are as followed:
 
         2a: takes a file's address and a document id, and displays a histogram 
         of the countries where users have visited that document from.
@@ -86,17 +86,16 @@ Here is an explanation of each of these parameters:
         4d: takes a file's address, a document id, and a user id and displays other
         documents the user may like to read.
 
-        5: takes a file's address, a document id, and a user id and displays a graph
-        showing the users relationship to documents the user may like to read.
+        5: takes a file's address, a document id, and a user id and generates a dot
+        graph which is attempted to be displayed.
 
-        6: takes a file's address, a document id, and a user id and displays a graph
-        of documents the user may like to read.
+        6: takes a file's address, a document id, and a user id and generates a dot
+        graph which is attempted to be displayed.
 
-        7: takes a file's address and a document id and displays a line chart showing 
-        spikes in activity for the document on different days.
+        7: takes a file's address and displays a line chart showing spikes in activity 
+        for the document on different days.
 
-        8: takes a file's address and a document id and calculates the average time 
-        spent reading the document.
+        8: takes a file's address and calculates the average time spent reading documents.
 
     -u: This allows for passing a user ID into the task. While not all tasks will use this,
     it is mandatory for others such as for task 4d.
@@ -113,13 +112,6 @@ We hope this helps, if not for more help check the user guide which can be found
 adjoining report or in the github repository.
 
     """)
-
-
-for currentArgument, currentValue in arguments:
-    if currentArgument in ("-h", "--help"):
-        display_Help()
-        sys.exit(2)
-    dictArgs[currentArgument] = currentValue
 
 
 # ↓ ↓ ALL FUNCTION DEFS BELOW HERE ↓ ↓
@@ -143,7 +135,7 @@ def get_averageReadTime(data):
     for time in data:
         total = total + (time // 60)
 
-    output = "The average time spent reading this document is" + str((total // len(data))) +  " minutes."
+    output = "The average time spent reading documents is" + str((total // len(data))) +  " minutes."
     print(output)
     return output
 
@@ -358,24 +350,51 @@ def dotFileGenerator(arr, docID, visID=None):
 
 
 # ↑ ↑ ALL FUNCTION DEFS ABOVE HERE ↑ ↑
-try:
-    dictFunctions = {
-        # "3a": create_histogram(Counter(get_viewsByBrowser(read_JSON(dictArgs["-f"]))), "Browsers", "Browser Histogram"),
-        # "3b": create_histogram(Counter(clean_viewsByBrowser(Counter(get_viewsByBrowser(read_JSON(dictArgs["-f"]))))), "Browsers", "Browser Histogram"),
-        # "2a": create_histogram(Counter(get_viewsByCountry(dictArgs["-d"], read_JSON(dictArgs["-f"]))), "Countries", "Countries Histogram"),
-        # "2b": create_histogram(Counter(get_viewsByContinent(Counter(get_viewsByCountry(dictArgs["-d"], read_JSON(dictArgs["-f"]))))), "Continents", "Continents Histogram"),
-        # "4d": top10(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"]))),
-        # "5": dotFileGenerator(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"])), dictArgs["-d"], dictArgs["-u"]),
-        # "6": dotFileGenerator(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"])), dictArgs["-d"], dictArgs["-u"]),
-        # "8": display_timeGraph(getTimes(read_JSON(dictArgs["-f"]))),
-        # "9": get_averageReadTime(get_timeSpent(read_JSON(dictArgs["-f"])))
-    }
-except Exception as e:
-    print(str(e))
 
     # sample_100k_lines (2).json
     # doc_uuid: 100806162735-00000000115598650cb8b514246272b5
     # user_uuid: 00000000deadbeef
+
+
+
+for currentArgument, currentValue in arguments:
+    if currentArgument in ("-h", "--help"):
+        display_Help()
+        sys.exit(2)
+    dictArgs[currentArgument] = currentValue
+
+try:
+    if dictArgs['-t'] == "2a":
+        create_histogram(Counter(get_viewsByCountry(dictArgs["-d"], read_JSON(dictArgs["-f"]))), "Countries", "Countries Histogram")
+        sys.exit(2)
+    elif dictArgs['-t'] == "2b":
+        create_histogram(Counter(get_viewsByContinent(Counter(get_viewsByCountry(dictArgs["-d"], read_JSON(dictArgs["-f"]))))), "Continents", "Continents Histogram")
+        sys.exit(2)
+    elif dictArgs['-t'] == "3a":
+        create_histogram(Counter(get_viewsByBrowser(read_JSON(dictArgs["-f"]))), "Browsers", "Browser Histogram")
+        sys.exit(2)
+    elif dictArgs['-t'] == "3b":
+        create_histogram(Counter(clean_viewsByBrowser(Counter(get_viewsByBrowser(read_JSON(dictArgs["-f"]))))), "Browsers", "Browser Histogram")
+        sys.exit(2)
+    elif dictArgs['-t'] == "4d":
+        top10(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"])))
+        sys.exit(2)
+    elif dictArgs['-t'] == "5":
+        dotFileGenerator(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"])), dictArgs["-d"], dictArgs["-u"])
+        sys.exit(2)
+    elif dictArgs['-t'] == "6":
+        dotFileGenerator(find_alsoLikes(dictArgs["-d"], dictArgs["-u"], read_JSON(dictArgs["-f"])), dictArgs["-d"], dictArgs["-u"])
+        sys.exit(2)
+    elif dictArgs['-t'] == "7":
+        display_timeGraph(getTimes(read_JSON(dictArgs["-f"])))
+        sys.exit(2)
+    elif dictArgs['-t'] == "8":
+        get_averageReadTime(get_timeSpent(read_JSON(dictArgs["-f"])))
+        sys.exit(2)
+    else:
+        print("Unknown operation")
+except Exception as e:
+    None
 
 root = Tk()
 topTen = StringVar()
